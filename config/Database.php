@@ -17,10 +17,13 @@ class Database{
         try{
             $this->conexao = new PDO($dsn, $this->user, $this->pwd);
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Conexão bem-sucedida!";
-        } catch(\Exception $e){
-            echo "Erro na conexão: " . $e->getMessage();
-        } 
+            //echo "Conexão bem-sucedida!";
+        } catch(\PDOException $e){
+            return json_encode(["Erro na conexão: "=>"Não foi possível estabelecer a conexão com o banco de dados. " . $e->getMessage()]);
+        } catch(\Throwable $th){
+            return json_encode(["Erro na conexão: "=>"Ocorreu um erro inesperado. " . $th->getMessage()]);
+        }
+        return $this->conexao;
     }
 }
 ?>
