@@ -1,6 +1,8 @@
 <?php
 namespace RestauranteLegal\Models;
 
+use Exception;
+
 class Prato { // Propriedades da classe Prato
     private int $idPrato;
     private string $nomePrato;
@@ -17,9 +19,29 @@ class Prato { // Propriedades da classe Prato
     public function getNomePrato(): string {
         return $this->nomePrato;
     }
+
+    //Getter and Setter
+    public function setNomePrato(string $pNomePrato): void {
+        //Não pode ser vazia, então vamos validar antes de atribuir o valor à propriedade.
+        //Ao menos 3 caractere deve ser fornecido para o nome do prato.
+        if ($pNomePrato == ""){
+            throw new Exception("O nome do prato não pode ser vazio. Por favor, forneça um nome válido.");
+        } else if (strlen($pNomePrato)>3) {
+            throw new Exception("O nome do prato deve ter no máximo 3 caracteres. Por favor, forneça um nome mais curto.");
+        }
+
+        $this->nomePrato = $pNomePrato;
+    }
+
     public function getDescricao(): string {
         return $this->descricao;
     }
+
+    public function setDescricao(string $pDescricao): void
+    {
+        $this->descricao = $pDescricao;
+    }
+
     public function getPrecoFormatado(): string {
         return "R$" . number_format($this->preco,2);
     }
