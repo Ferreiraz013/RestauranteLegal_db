@@ -26,7 +26,7 @@ $minhaConexao = $meuBancoDeDados->conectar();
 if (is_string($minhaConexao)) {
     echo $minhaConexao; //Exibe o erro retornado pelo método "conectar()"
 } else {
-    echo "Conexão com o banco de dados estabelecida com sucesso! <br><br>";
+ echo "Conexão com o banco de dados estabelecida com sucesso! <br><br>";
 }
 
 //Criação e teste da classe Prato;
@@ -58,5 +58,10 @@ echo $minhaSobremesa->getSobremesaHTML();
 
 echo "<br><br>";
 
-echo "(❁´◡`❁)...(●'◡'●)...(*≧ω≦)...(◕‿◕✿)...(｡♥‿♥｡)...(✿◠‿◠)...(｡♥‿♥｡)...(◕‿◕✿)...(*≧ω≦)...(●'◡'●)...(❁´◡`❁)...☆*: .｡. o(≧▽≦)o .｡.:*☆...(^///^)";
+try {
+    $meuSegundoPrato = new Prato(2, "Lasanha", "Delisiosa lasanha de carne",55.90);
+echo $meuSegundoPrato->getPratoHTML();
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+}
 ?>
