@@ -30,7 +30,7 @@ class Sobremesa { // Propriedades da classe Sobremesa
         //O nome não pode ser vazio e deve possuir ao menos 3 caracteres
         if (trim($nomeSobremesa) == "") {
         throw new Exception("O nome da sobremesa não pode ser vazio.");
-        } else if (strlen($nomeSobremesa) < 3) {
+        } else if (strlen(trim($nomeSobremesa)) < 3) {
         throw new Exception("O nome da sobremesa deve ter ao menos 3 caracteres.");
         }
         $this->nomeSobremesa = $nomeSobremesa;
@@ -48,7 +48,7 @@ class Sobremesa { // Propriedades da classe Sobremesa
         //$this->preco = $preco;
     //}
 
-    public function setPreco($preco): void {
+    public function setPreco(float $preco): void {
         //Impede que o usuário insira um texto como parâmetro do preço
         if (!is_numeric($preco)) {
             throw new Exception("O preço deve ser um valor numérico válido. Textos não são permitidos.");

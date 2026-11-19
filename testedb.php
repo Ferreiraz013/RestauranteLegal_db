@@ -6,6 +6,7 @@ require_once __DIR__ . "/config/Database.php";
 require_once __DIR__ . "/models/Prato.php";
 require_once __DIR__ . "/models/Bebida.php";
 require_once __DIR__ . "/models/Sobremesa.php";
+require_once __DIR__ . "/models/Marmita.php";
 
 //Importação dos Namespaces;
 // O "use" diz ao PHP quais "namespaces" (caminhos lógicos) nós vamos utilizar neste arquivo.
@@ -13,6 +14,7 @@ use RestauranteLegal\Config\Database;
 use RestauranteLegal\Models\Prato;
 use RestauranteLegal\Models\Bebida;
 use RestauranteLegal\Models\Sobremesa;
+use RestauranteLegal\Models\Marmita;
 
 
 //Teste de conexão com o banco de dados;
@@ -42,7 +44,7 @@ echo "<br><br>";
 
 //Criação e teste da classe Bebida;
 //Instancia um novo objeto "Bebida" passando ID, nome, volume, indicador alcoólico e preço.
-$minhaBebida = new Bebida(1, "Coca-Cola Lata", "350 ml", 0, 6.50);
+$minhaBebida = new Bebida(1, "Coca-Cola Lata", 350, 0, 6.50);
 
 //Chama o método que formata os dados da bebida em HTML e exibe na tela.
 echo $minhaBebida->getBebidaHTML();
@@ -58,9 +60,28 @@ echo $minhaSobremesa->getSobremesaHTML();
 
 echo "<br><br>";
 
+echo "======Segundo Pedido======<br><br>";
 try {
-    $meuSegundoPrato = new Prato(2, "Lasanha", "Delisiosa lasanha de carne",55.90);
+$meuSegundoPrato = new Prato(2, "Lasanha", "Delisiosa lasanha de carne",55.90);
 echo $meuSegundoPrato->getPratoHTML();
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+}
+
+echo"<br><br>";
+
+try {
+    $minhaSegundaBebida = new Bebida(2, "Suco Natural de Laranja", 500, 0, 9.90);
+    echo $minhaSegundaBebida->getBebidaHTML();
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+}
+
+echo "<br><br>";
+
+try {
+    $minhaSegundaSobremesa = new Sobremesa(2, "Mousse de Maracujá", "Mousse leve e aerado com cobertura de calda de maracujá fresca", 12.00);
+    echo $minhaSegundaSobremesa->getSobremesaHTML();
 } catch (\Throwable $th) {
     echo $th->getMessage();
 }

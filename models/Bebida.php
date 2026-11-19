@@ -6,12 +6,12 @@ use Exception;
 class Bebida { // Propriedades da classe Bebida
     private int $idBebida;
     private string $nomeBebida;
-    private string $volume;
+    private int $volume;
     private int $alcoolico;
     private float $preco;
     private string $tabela = "bebidas"; // Nome da tabela no banco de dados
 
-    public function __construct(int $idBebida, string $nomeBebida, string $volume, int $alcoolico, float $preco) {
+    public function __construct(int $idBebida, string $nomeBebida, int $volume, int $alcoolico, float $preco) {
         //$this->idBebida = $idBebida;
         $this->setIdBebida($idBebida);
         //$this->nomeBebida = $nomeBebida;
@@ -48,8 +48,11 @@ class Bebida { // Propriedades da classe Bebida
         $this->volume = $volume;
     }
 
-    public function setAlcoolico(bool $alcoolico): void {
-        //O valor de alcoólico deve ser apenas TRUE ou FALSE
+    public function setAlcoolico(int $alcoolico): void {
+        //O valor de alcoólico deve ser apenas 1 ou 0
+        if ($alcoolico !== 1 && $alcoolico !== 0) {
+            throw new Exception("O valor de alcoólico deve ser 1 (sim) ou 0 (não). Por favor, forneça um valor válido.");
+        }
         $this->alcoolico = $alcoolico;
     }
 
@@ -57,9 +60,9 @@ class Bebida { // Propriedades da classe Bebida
         //Não pode ser negativo, nem zero, então vamos validar antes de atribuir o valor à propriedade.
         //Ao menos 3 caractere deve ser fornecido para o nome da bebida.
         //O valor de preço deve ser maior do que zero
-        if ($preco <= 0) {
-            throw new Exception("O valor de preço deve ser maior que zero. Por favor, forneça um valor válido.");
-        }
+        // if ($preco <= 0) {
+        //     throw new Exception("O valor de preço deve ser maior que zero. Por favor, forneça um valor válido.");
+        // }
         $this->preco = $preco;
     }
 

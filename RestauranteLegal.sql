@@ -57,3 +57,19 @@ VALUES
 ('Mousse de Maracujá', 'Mousse leve e aerado com cobertura de calda de maracujá fresca', 12.00),
 ('Torta Holandesa', 'Fatia de torta com creme belga, biscoitos e cobertura de ganache de chocolate', 16.90),
 ('Cheesecake de Frutas Vermelhas', 'Fatia de cheesecake estilo Nova York com calda de amoras e morangos', 18.50);
+
+CREATE TABLE marmita (
+idMarmita INT AUTO_INCREMENT PRIMARY KEY,
+pratoMarmita VARCHAR(100) NOT NULL UNIQUE,
+precoMarmita DECIMAL(6,2) NOT NULL,
+validadeMarmita DATE NOT NULL
+);
+
+SELECT * FROM marmita
+
+INSERT INTO marmita
+(pratoMarmita, precoMarmita, validadeMarmita)
+VALUES
+('Frango Grelhado com Arroz, Feijão e Fritas', 23.90, '2026-11-25'),
+('Bife Acebolado com Purê de Batata e Salada', 25.50, '2026-11-24'),
+('Strogonoff de Frango com Arroz e Batata Palha', 24.90, '2026-11-26');
